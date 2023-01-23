@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   theme: "light",
   isLoading: false,
-  genre: "",
+  genre: { name: "", id: null },
 };
 
 const uiSlice = createSlice({
@@ -19,7 +19,13 @@ const uiSlice = createSlice({
       //   console.log(state.isLoading);
     },
     setGenre: (state, action) => {
-      state.genre = action.payload;
+      if (state.genre.id === action.payload.id) {
+        state.genre.name = "";
+        state.genre.id = null;
+      } else {
+        state.genre.name = action.payload.name;
+        state.genre.id = action.payload.id;
+      }
     },
   },
 });

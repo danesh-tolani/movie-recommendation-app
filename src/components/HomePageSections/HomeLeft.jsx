@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { APIUrls } from "../utils/APIUrls";
-import GenreWrapper from "./GenreWrapper";
+import { APIUrls } from "../../utils/APIUrls";
+import GenreWrapper from "../GenreWrapper";
 import "./HomeLeft.css";
 
 const HomeLeft = () => {
@@ -20,13 +20,14 @@ const HomeLeft = () => {
 
   return (
     <>
-      <div className="border border-red-400 flex flex-col py-3 overflow-y-scroll h-[100vh] no-scrollbar w-[15rem]">
+      <div className="border border-red-400 flex flex-col py-3 overflow-y-scroll h-[100vh] no-scrollbar w-[20%]">
         {genres &&
           genres.map((genre) => {
             return (
               <GenreWrapper
                 key={genre.id}
                 genre={genre.name}
+                id={genre.id}
               />
             );
           })}

@@ -1,13 +1,14 @@
 import React from "react";
 import FlexBetween from "../components/FlexBetween";
-import HomeLeft from "../components/HomeLeft";
+import HomeLeft from "../components/HomePageSections/HomeLeft";
+import HomeMiddle from "../components/HomePageSections/HomeMiddle";
 
 const HomePage = () => {
   return (
-    <FlexBetween style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
+    <FlexBetween sx={{ alignItems: "flex-start" }}>
       <HomeLeft />
-      <div>middle</div>
-      <div>right</div>
+      <HomeMiddle />
+      {/* <div>right</div> */}
     </FlexBetween>
   );
 };
