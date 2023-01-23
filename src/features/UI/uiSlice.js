@@ -14,8 +14,8 @@ const uiSlice = createSlice({
       state.theme = state.theme === "light" ? "dark" : "light";
       // console.log(state.theme);
     },
-    toggleLoading: (state) => {
-      state.isLoading = state.isLoading === false ? true : false;
+    toggleLoading: (state, action) => {
+      state.isLoading = action.payload;
       //   console.log(state.isLoading);
     },
     setGenre: (state, action) => {

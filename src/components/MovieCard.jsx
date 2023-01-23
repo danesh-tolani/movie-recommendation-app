@@ -20,7 +20,7 @@ const MovieCard = ({ movie }) => {
   return (
     <Box sx={{ position: "relative" }}>
       <img
-        style={{ height: "300px", width: "calc(300px * (9/16))", objectFit: "contain" }}
+        style={{ height: "20rem", width: "calc(20rem * (9/16))", objectFit: "contain" }}
         src={posterURL}
         alt={movie.original_title}
       />

@@ -17,8 +17,8 @@ export const colorTokens = {
   primary: {
     50: "#E6FBFF",
     100: "#CCF7FE",
-    200: "##FDE8EF",
-    300: "##EF6391",
+    200: "#F6F6F6",
+    300: "#EF6391",
     400: "#E71D60",
     500: "#E71D60",
     600: "#00A0BC",
@@ -43,7 +43,7 @@ export const themeSettings = (mode) => ({
             dark: colorTokens.grey[100],
             main: colorTokens.grey[200],
             mediumMain: colorTokens.grey[300],
-            medium: colorTokens.grey[400],
+            medium: colorTokens.primary[400],
             light: colorTokens.grey[700],
           },
           background: {

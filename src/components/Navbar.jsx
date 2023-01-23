@@ -20,8 +20,9 @@ const Navbar = () => {
   const { theme } = useSelector((state) => state.ui);
   const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
 
-  const bgColor = mode.palette.background.default;
+  const bgColor = mode.palette.background.alt;
   const textColor = mode.palette.primary.dark;
+  console.log(textColor);
 
   const handleChange = () => {
     setChecked((prev) => !prev);
