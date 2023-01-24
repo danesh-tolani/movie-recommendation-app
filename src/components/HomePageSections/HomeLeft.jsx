@@ -1,9 +1,10 @@
-import { createTheme } from "@mui/material";
+import { createTheme, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { themeSettings } from "../../theme";
 import { APIUrls } from "../../utils/APIUrls";
+import FlexBetween from "../FlexBetween";
 import GenreWrapper from "../GenreWrapper";
 import "./HomeLeft.css";
 
@@ -26,22 +27,25 @@ const HomeLeft = () => {
   }, []);
 
   return (
-    <>
-      <div
-        className=" flex flex-col overflow-y-scroll h-[100vh] no-scrollbar w-[20%] "
-        style={{ border: `2px solid ${borderColor}` }}>
+    <FlexBetween sx={{ flexDirection: "column", width: "20%", alignItems: "flex-start", border: `1px solid ${borderColor}` }}>
+      <Typography
+        style={{ color: textColor, padding: "1rem 2rem" }}
+        variant="h5">
+        Categories
+      </Typography>
+      <div className=" flex flex-col overflow-y-scroll h-[100vh] no-scrollbar ">
         {genres &&
           genres.map((genre) => {
             return (
               <GenreWrapper
                 key={genre.id}
-                genre={genre.name}
-                id={genre.id}
+                currentGenre={genre.name}
+                currentId={genre.id}
               />
             );
           })}
       </div>
-    </>
+    </FlexBetween>
   );
 };
 

@@ -12,8 +12,6 @@ const MovieCard = ({ movie }) => {
     right: "0",
     color: "#fff",
     backgroundColor: " rgba(255,255,255,0.06)",
-    border: "1px solid rgba(255,255,255,0.1)",
-    borderRadius: "10px",
     backdropFilter: "blur(10px)",
   };
 

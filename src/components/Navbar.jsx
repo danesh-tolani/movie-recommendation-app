@@ -32,7 +32,11 @@ const Navbar = () => {
     <Box>
       {isNonMobileScreens ? (
         <FlexBetween sx={{ backgroundColor: bgColor, padding: "1rem 2rem", justifyContent: "space-between" }}>
-          <Typography sx={{ color: textColor, fontWeight: 600 }}>Movie Recommender</Typography>
+          <Typography
+            variant="h4"
+            sx={{ color: textColor, fontWeight: 600 }}>
+            Movie Recommender
+          </Typography>
           <FlexBetween sx={{ width: "15rem", marginLeft: "40%", columnGap: "1rem" }}>
             <Button
               variant="outlined"

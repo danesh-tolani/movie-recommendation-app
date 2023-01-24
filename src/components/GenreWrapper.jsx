@@ -1,27 +1,33 @@
 import React, { useMemo } from "react";
 import { Box, createTheme, Typography } from "@mui/material";
+import FlexBetween from "../components/FlexBetween";
 import { useDispatch, useSelector } from "react-redux";
 import { setGenre } from "../features/UI/uiSlice";
 import { themeSettings } from "../theme";
 import SlideshowIcon from "@mui/icons-material/Slideshow";
 
-const GenreWrapper = ({ genre, id }) => {
+const GenreWrapper = ({ currentGenre, currentId }) => {
   const dispatch = useDispatch();
 
-  const { theme } = useSelector((state) => state.ui);
+  const { theme, genre } = useSelector((state) => state.ui);
   const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
   const bgColor = mode.palette.background.default;
-  const textColor = mode.palette.primary.dark;
+  let textColor = mode.palette.primary.dark;
+  const borderColor = mode.palette.neutral.medium;
+
+  if (currentId == genre.id) {
+    textColor = "#E71D60";
+  }
 
   return (
-    <Box
-      sx={{ padding: "1rem 2rem 1rem 4rem" }}
+    <FlexBetween
+      sx={{ padding: "1rem 2rem", justifyContent: "flex-start", columnGap: "1rem", cursor: "pointer" }}
       onClick={() => {
-        dispatch(setGenre({ name: genre, id: id }));
+        dispatch(setGenre({ name: currentGenre, id: currentId }));
       }}>
-      <SlideshowIcon />
-      <Typography sx={{ color: textColor }}>{genre}</Typography>
-    </Box>
+      <SlideshowIcon style={{ color: textColor, height: "2rem" }} />
+      <Typography sx={{ color: textColor }}>{currentGenre}</Typography>
+    </FlexBetween>
   );
 };
 

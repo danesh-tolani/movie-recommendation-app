@@ -1,15 +1,33 @@
+import { Box, createTheme } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { themeSettings } from "../../theme";
 import { APIUrls } from "../../utils/APIUrls";
 import FlexBetween from "../FlexBetween";
+import ImageSlider from "../ImageSlider/ImageSlider";
 import LoadingScreen from "../LoadingScreen";
 import MovieCard from "../MovieCard";
+// import { FaBeer, FaChevronLeft } from "react-icons/fa";
 
 const HomeMiddle = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { genre } = useSelector((state) => state.ui);
+  const { genre, theme } = useSelector((state) => state.ui);
+
+  const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
+  const borderColor = mode.palette.neutral.medium;
+  console.log(borderColor);
+
+  const flexStyle = {
+    flexWrap: "wrap",
+    columnGap: "50px",
+    // padding: "0 1rem",
+    justifyContent: "center",
+    alignItems: "start",
+    width: "100%",
+    // border: "2px solid blue",
+  };
 
   async function getMovies() {
     if (genre.id == null) {
@@ -36,27 +54,31 @@ const HomeMiddle = () => {
   }
 
   console.log("🚀 ~ file: HomeMiddle.jsx:26 ~ HomeMiddle ~ movies", movies);
+
   useEffect(() => {
     getMovies();
   }, [genre.id]);
 
   return loading ? (
-    <FlexBetween sx={{ flexWrap: "wrap", columnGap: "50px", padding: "0 2rem", justifyContent: "center", alignItems: "start", width: "85%" }}>
+    <FlexBetween style={{ justifyContent: "center" }}>
       <LoadingScreen />
     </FlexBetween>
   ) : (
-    <FlexBetween sx={{ flexWrap: "wrap", columnGap: "50px", padding: "0 2rem", justifyContent: "center", alignItems: "start", width: "85%" }}>
-      {movies &&
-        movies.map((movie, i) => {
-          if (i < 20) {
-            return (
-              <div key={i}>
-                <MovieCard movie={movie} />
-              </div>
-            );
-          }
-        })}
-    </FlexBetween>
+    <Box style={{ border: `1px solid ${borderColor}` }}>
+      <ImageSlider />
+      <FlexBetween sx={{ ...flexStyle }}>
+        {movies &&
+          movies.map((movie, i) => {
+            if (i < 20) {
+              return (
+                <div key={i}>
+                  <MovieCard movie={movie} />
+                </div>
+              );
+            }
+          })}
+      </FlexBetween>
+    </Box>
   );
 };
 
