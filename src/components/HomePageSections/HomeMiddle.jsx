@@ -8,16 +8,16 @@ import FlexBetween from "../FlexBetween";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import LoadingScreen from "../LoadingScreen";
 import MovieCard from "../MovieCard";
-// import { FaBeer, FaChevronLeft } from "react-icons/fa";
 
 const HomeMiddle = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const { genre, theme } = useSelector((state) => state.ui);
+  const { list } = useSelector((state) => state.watchList);
+  console.log(list);
 
   const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
   const borderColor = mode.palette.neutral.medium;
-  console.log(borderColor);
 
   const flexStyle = {
     flexWrap: "wrap",
@@ -53,8 +53,6 @@ const HomeMiddle = () => {
     }
   }
 
-  console.log("🚀 ~ file: HomeMiddle.jsx:26 ~ HomeMiddle ~ movies", movies);
-
   useEffect(() => {
     getMovies();
   }, [genre.id]);
@@ -64,7 +62,7 @@ const HomeMiddle = () => {
       <LoadingScreen />
     </FlexBetween>
   ) : (
-    <Box style={{ border: `1px solid ${borderColor}` }}>
+    <Box>
       <ImageSlider />
       <FlexBetween sx={{ ...flexStyle }}>
         {movies &&

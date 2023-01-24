@@ -12,11 +12,9 @@ const uiSlice = createSlice({
   reducers: {
     toggleTheme: (state, _action) => {
       state.theme = state.theme === "light" ? "dark" : "light";
-      // console.log(state.theme);
     },
     toggleLoading: (state, action) => {
       state.isLoading = action.payload;
-      //   console.log(state.isLoading);
     },
     setGenre: (state, action) => {
       if (state.genre.id === action.payload.id) {

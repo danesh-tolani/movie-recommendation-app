@@ -22,7 +22,6 @@ const Navbar = () => {
 
   const bgColor = mode.palette.background.alt;
   const textColor = mode.palette.primary.dark;
-  console.log(textColor);
 
   const handleChange = () => {
     setChecked((prev) => !prev);
@@ -37,12 +36,18 @@ const Navbar = () => {
             sx={{ color: textColor, fontWeight: 600 }}>
             Movie Recommender
           </Typography>
-          <FlexBetween sx={{ width: "15rem", marginLeft: "40%", columnGap: "1rem" }}>
+          <FlexBetween sx={{ width: "25rem", marginLeft: "40%", columnGap: "1rem" }}>
             <Button
               variant="outlined"
               onClick={() => navigate("/")}
-              sx={{ fontWeight: "600", border: "2px solid" }}>
+              sx={{ fontWeight: "600", border: "2px solid", width: "10rem" }}>
               Home
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={() => navigate("/watchlist")}
+              sx={{ fontWeight: "600", border: "2px solid", width: "15rem" }}>
+              Watch List
             </Button>
             <Button
               variant="outlined"
