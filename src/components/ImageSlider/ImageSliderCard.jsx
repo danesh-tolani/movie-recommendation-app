@@ -7,9 +7,8 @@ const ImageSliderCard = ({ movie }) => {
   const blurEffect = {
     color: "#fff",
     backgroundColor: " rgba(255,255,255,0.06)",
-    backdropFilter: "blur(10px)",
+    backdropFilter: "blur(20px)",
     width: "400px",
-    height: "200px",
     borderRadius: "20px",
   };
   // movie = {
@@ -30,6 +29,10 @@ const ImageSliderCard = ({ movie }) => {
   //   vote_count: 2366,
   // };
 
+  function truncate(str, n) {
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
+
   const backdropURL = `https://image.tmdb.org/t/p/original${movie?.backdrop_path}`;
 
   getMovieURL(movie?.id).then((response) => setUrl(response));
@@ -37,24 +40,29 @@ const ImageSliderCard = ({ movie }) => {
   return (
     <div className="">
       <div
-        className="absolute z-40 bottom-5 "
+        className="absolute z-40 bottom-16 ml-5 p-4 h-"
         style={{ ...blurEffect }}>
-        <h3 className="">{movie?.title}</h3>
+        <h3 className="text-4xl font-bold">{movie?.title}</h3>
         <div className="">
-          <p className="w-[100%]">{movie?.overview}</p>
+          <p className="w-[100%] text-base">{truncate(movie?.overview, 130)}</p>
         </div>
-        <h5>IMDB {movie.vote_average}/10</h5>
-        <a
-          href={url}
-          target="_blank">
-          <button>Explore</button>
-        </a>
+        <div className="flex items-center justify-start gap-x-3">
+          <img
+            src="./src/assets/imdb.png"
+            alt=""
+          />
+          <h5 className="">{movie.vote_average}/10</h5>
+        </div>
       </div>
-      <img
-        src={backdropURL}
-        style={{ height: "500px", width: "100%", objectFit: "cover", objectPosition: "center" }}
-        alt=""
-      />
+      <a
+        href={url}
+        target="_blank">
+        <img
+          src={backdropURL}
+          style={{ height: "500px", width: "100%", objectFit: "cover", objectPosition: "center" }}
+          alt=""
+        />
+      </a>
     </div>
   );
 };
