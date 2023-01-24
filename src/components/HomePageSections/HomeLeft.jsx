@@ -25,9 +25,9 @@ const HomeLeft = () => {
   useEffect(() => {
     getCategories();
   }, []);
-
+  // border: `1px solid ${borderColor}`
   return (
-    <FlexBetween sx={{ flexDirection: "column", width: "20%", alignItems: "flex-start", border: `1px solid ${borderColor}` }}>
+    <FlexBetween sx={{ flexDirection: "column", width: "20%", alignItems: "flex-start" }}>
       <Typography
         style={{ color: textColor, padding: "1rem 2rem" }}
         variant="h5">
