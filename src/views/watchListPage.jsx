@@ -1,7 +1,7 @@
 import React from "react";
 
-const watchListPage = () => {
+const WatchListPage = () => {
   return <div>watchListPage</div>;
 };
 
-export default watchListPage;
+export default WatchListPage;

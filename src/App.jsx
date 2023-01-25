@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar";
 import HomePage from "./views/HomePage";
 import SearchPage from "./views/SearchPage";
-import watchListPage from "./views/watchListPage";
+import WatchListPage from "./views/watchListPage";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme, toggleLoading } from "./features/UI/uiSlice";
@@ -33,7 +33,7 @@ function App() {
             />
             <Route
               path="/watchlist"
-              element={<watchListPage />}
+              element={<WatchListPage />}
             />
             <Route
               path="/search"
