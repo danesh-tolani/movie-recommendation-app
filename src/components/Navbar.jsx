@@ -33,7 +33,8 @@ const Navbar = () => {
         <FlexBetween sx={{ backgroundColor: bgColor, padding: "1rem 2rem", justifyContent: "space-between" }}>
           <Typography
             variant="h4"
-            sx={{ color: textColor, fontWeight: 600 }}>
+            sx={{ color: textColor, fontWeight: 600, cursor: "pointer" }}
+            onClick={() => navigate("/")}>
             Movie Recommender
           </Typography>
           <FlexBetween sx={{ width: "25rem", marginLeft: "40%", columnGap: "1rem" }}>
@@ -60,7 +61,11 @@ const Navbar = () => {
         </FlexBetween>
       ) : (
         <FlexBetween sx={{ backgroundColor: bgColor, padding: "1rem 2rem" }}>
-          <Typography sx={{ color: textColor, fontWeight: 600 }}>Movie Recommender</Typography>
+          <Typography
+            sx={{ color: textColor, fontWeight: 600, cursor: "pointer" }}
+            onClick={() => navigate("/")}>
+            Movie Recommender
+          </Typography>
           <FormControlLabel
             control={
               <MenuIcon

@@ -18,7 +18,7 @@ const WatchListPage = () => {
 
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1000);
   }, []);
 
   const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
@@ -29,11 +29,12 @@ const WatchListPage = () => {
   const flexStyle = {
     flexWrap: "wrap",
     columnGap: `${isNonMobileScreens ? "50px" : "30px"}`,
-    // padding: "0 1rem",
+    padding: "0 1rem",
     justifyContent: "center",
     alignItems: "start",
     width: "100%",
     // border: "2px solid blue",
+    rowGap: "30px",
   };
 
   return loading ? (
@@ -45,7 +46,7 @@ const WatchListPage = () => {
       style={{ backgroundColor: backgroundColor, height: "90vh", overflowY: "scroll" }}
       className="no-scrollbar ">
       <h1
-        className="text-center text-4xl pt-4"
+        className="text-center text-4xl py-4"
         style={{ color: textColor }}>
         Watch List
       </h1>

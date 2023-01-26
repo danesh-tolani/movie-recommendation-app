@@ -22,10 +22,11 @@ const HomeMiddle = () => {
   const flexStyle = {
     flexWrap: "wrap",
     columnGap: `${isNonMobileScreens ? "50px" : "30px"}`,
-    // padding: "0 1rem",
+    padding: "1rem 1rem",
     justifyContent: "center",
     alignItems: "start",
     width: "100%",
+    rowGap: "30px",
     // border: "2px solid blue",
   };
 

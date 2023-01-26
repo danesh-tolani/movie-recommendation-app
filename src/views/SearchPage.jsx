@@ -24,11 +24,13 @@ const SearchPage = () => {
   const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
 
   const flexStyle = {
+    // border: "2px solid red",
     flexWrap: "wrap",
     columnGap: `${isNonMobileScreens ? "50px" : "30px"}`,
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
+    rowGap: "30px",
   };
 
   const borderColor = mode.palette.neutral.medium;
@@ -96,10 +98,10 @@ const SearchPage = () => {
         </FlexBetween>
       ) : (
         <Box
-          style={{ backgroundColor: backgroundColor, height: "67vh", overflowY: "scroll" }}
+          style={{ backgroundColor: backgroundColor, height: isNonMobileScreens ? "67vh" : "100%" }}
           className="no-scrollbar ">
           <h1
-            className="text-center text-3xl pt-4"
+            className="text-center text-3xl py-4"
             style={{ color: textColor }}>
             Search Results
           </h1>

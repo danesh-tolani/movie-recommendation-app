@@ -1,12 +1,14 @@
 import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
 import { getMovieURL } from "../utils/getMovieURL";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWatchList, removeFromWatchList } from "../features/watchList/watchlistSlice";
 
 const MovieCard = ({ movie }) => {
   const [url, setUrl] = useState("");
+  const [added, setAdded] = useState(false);
   const posterURL = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
 
   getMovieURL(movie?.id).then((response) => setUrl(response));
@@ -16,7 +18,8 @@ const MovieCard = ({ movie }) => {
 
   const buttonStyle = {
     position: "absolute",
-    top: "calc(3rem * (1/2))",
+    // top: "calc(3rem * (1/2))",
+    top: "0",
     height: "2rem",
     right: "0",
     color: "#fff",
@@ -33,7 +36,7 @@ const MovieCard = ({ movie }) => {
     });
 
     if (isPresent === undefined) {
-      dispatch(addToWatchList(movie));
+      dispatch(addToWatchList({ ...movie, added: true }));
     } else {
       dispatch(removeFromWatchList(movie));
     }
@@ -44,16 +47,21 @@ const MovieCard = ({ movie }) => {
       <a
         href={url}
         target="_blank">
-        <img
-          style={{ height: "20rem", width: "calc(20rem * (9/16))", objectFit: "contain" }}
-          src={posterURL}
-          alt={movie.original_title}
-        />
+        {movie.poster_path ? (
+          <img
+            style={{ height: "18rem", width: "calc(20rem * (9/16))", objectFit: "cover" }}
+            src={posterURL}
+            alt={movie.original_title}
+          />
+        ) : (
+          <p style={{ height: "18rem", width: "calc(20rem * (9/16))", fontSize: "20px", padding: "3rem 0", backgroundColor: "beige" }}>{movie?.original_title}</p>
+        )}
       </a>
       <Button
         sx={buttonStyle}
         onClick={() => addMovie()}>
-        <AddIcon sx={{ height: "2rem" }} />
+        {movie.added ? <CloseIcon sx={{ height: "2rem" }} /> : <AddIcon sx={{ height: "2rem" }} />}
+        {/* <AddIcon sx={{ height: "2rem" }} /> */}
       </Button>
     </Box>
   );
