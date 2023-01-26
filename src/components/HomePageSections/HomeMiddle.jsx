@@ -12,6 +12,7 @@ import MovieCard from "../MovieCard";
 const HomeMiddle = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [activePage, setActivePage] = useState(1);
   const { genre, theme } = useSelector((state) => state.ui);
   const { list } = useSelector((state) => state.watchList);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
@@ -30,12 +31,15 @@ const HomeMiddle = () => {
     // border: "2px solid blue",
   };
 
-  async function getMovies() {
+  async function getMovies(num) {
     if (genre.id == null) {
       setLoading(true);
       await axios
-        .get(APIUrls.nowPlayingAPI)
-        .then((response) => setMovies(response.data.results))
+        .get(APIUrls.nowPlayingAPI.replace("page=1", `page=${num}`))
+        .then((response) => {
+          console.log(response.data.results);
+          setMovies(response.data.results);
+        })
         .then(
           setTimeout(() => {
             setLoading(false);
@@ -44,7 +48,7 @@ const HomeMiddle = () => {
     } else {
       setLoading(true);
       await axios
-        .get(APIUrls.accordingToGenre.replace("genres=", `genres=${genre.id}`))
+        .get(APIUrls.accordingToGenre.replace("page=1&with_genres=", `page=${num}&with_genres=${genre.id}`))
         .then((response) => setMovies(response.data.results))
         .then(
           setTimeout(() => {
@@ -58,26 +62,44 @@ const HomeMiddle = () => {
     getMovies();
   }, [genre.id]);
 
-  return loading ? (
-    <FlexBetween style={{ justifyContent: "center", height: "80vh" }}>
-      <LoadingScreen />
-    </FlexBetween>
-  ) : (
-    <Box>
+  return (
+    <>
       {isNonMobileScreens && <ImageSlider />}
-      <FlexBetween sx={{ ...flexStyle }}>
-        {movies &&
-          movies.map((movie, i) => {
-            if (i < 20) {
+      {loading ? (
+        <FlexBetween style={{ justifyContent: "center", height: "80vh" }}>
+          <LoadingScreen />
+        </FlexBetween>
+      ) : (
+        <Box>
+          <FlexBetween sx={{ ...flexStyle }}>
+            {movies &&
+              movies.map((movie, i) => {
+                if (i < 20) {
+                  return (
+                    <div key={i}>
+                      <MovieCard movie={movie} />
+                    </div>
+                  );
+                }
+              })}
+          </FlexBetween>
+          <FlexBetween sx={{ padding: "1rem", width: isNonMobileScreens ? "40%" : "90%", margin: "0 auto" }}>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => {
               return (
-                <div key={i}>
-                  <MovieCard movie={movie} />
-                </div>
+                <p
+                  style={{ color: number == activePage ? "red" : "black", cursor: "pointer" }}
+                  onClick={() => {
+                    getMovies(number);
+                    setActivePage(number);
+                  }}>
+                  {number}
+                </p>
               );
-            }
-          })}
-      </FlexBetween>
-    </Box>
+            })}
+          </FlexBetween>
+        </Box>
+      )}
+    </>
   );
 };
 
