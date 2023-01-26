@@ -5,7 +5,7 @@ const LoadingScreen = () => {
   return (
     <FlexBetween>
       <img
-        src="./src/assets/loading.svg"
+        src="./loading.svg"
         alt=""
       />
     </FlexBetween>

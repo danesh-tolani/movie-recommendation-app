@@ -31,7 +31,7 @@ const ImageSliderCard = ({ movie }) => {
         </div>
         <div className="flex items-center justify-start gap-x-3">
           <img
-            src="./src/assets/imdb.png"
+            src="./imdb.png"
             alt=""
           />
           <h5 className="">{movie.vote_average}/10</h5>
