@@ -87,7 +87,7 @@ const Navbar = () => {
             maxWidth="150px"
             minWidth="150px"
             backgroundColor={bgColor}
-            // backgroundColor="red"
+            borderRadius="10px"
             in={checked}>
             <Box
               display="flex"
@@ -107,6 +107,16 @@ const Navbar = () => {
                   }}
                   sx={{ fontWeight: "600", border: "2px solid", width: "6rem" }}>
                   Home
+                </Button>
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    navigate("/watchlist");
+                    setIsMobileMenuToggled(!isMobileMenuToggled);
+                    handleChange();
+                  }}
+                  sx={{ fontWeight: "600", border: "2px solid", width: "6rem" }}>
+                  Watch List
                 </Button>
                 <Button
                   variant="outlined"

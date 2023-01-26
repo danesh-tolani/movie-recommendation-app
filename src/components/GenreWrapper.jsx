@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Box, createTheme, Typography } from "@mui/material";
+import { Box, createTheme, Typography, useMediaQuery } from "@mui/material";
 import FlexBetween from "../components/FlexBetween";
 import { useDispatch, useSelector } from "react-redux";
 import { setGenre } from "../features/UI/uiSlice";
@@ -8,6 +8,7 @@ import SlideshowIcon from "@mui/icons-material/Slideshow";
 
 const GenreWrapper = ({ currentGenre, currentId }) => {
   const dispatch = useDispatch();
+  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
   const { theme, genre } = useSelector((state) => state.ui);
   const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
@@ -25,7 +26,7 @@ const GenreWrapper = ({ currentGenre, currentId }) => {
       onClick={() => {
         dispatch(setGenre({ name: currentGenre, id: currentId }));
       }}>
-      <SlideshowIcon style={{ color: textColor, height: "2rem" }} />
+      {isNonMobileScreens && <SlideshowIcon style={{ color: textColor, height: "2rem" }} />}
       <Typography sx={{ color: textColor }}>{currentGenre}</Typography>
     </FlexBetween>
   );

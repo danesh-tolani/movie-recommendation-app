@@ -1,5 +1,5 @@
 import { Box, createTheme } from "@mui/system";
-import { Button } from "@mui/material";
+import { Button, useMediaQuery } from "@mui/material";
 
 import React, { useMemo, useState } from "react";
 import FlexBetween from "../components/FlexBetween";
@@ -16,20 +16,21 @@ const initialValues = {
 };
 
 const SearchPage = () => {
+  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
+  const [values, setValues] = useState(initialValues);
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const { genre, theme } = useSelector((state) => state.ui);
+  const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
+
   const flexStyle = {
     flexWrap: "wrap",
-    columnGap: "50px",
+    columnGap: `${isNonMobileScreens ? "50px" : "30px"}`,
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
   };
 
-  const [values, setValues] = useState(initialValues);
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const { genre, theme } = useSelector((state) => state.ui);
-
-  const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
   const borderColor = mode.palette.neutral.medium;
   const textColor = mode.palette.primary.dark;
   const backgroundColor = mode.palette.background.default;
@@ -38,7 +39,10 @@ const SearchPage = () => {
     e.preventDefault();
     setLoading(true);
     searchMovie(values)
-      .then((response) => setMovies(response.data.results))
+      .then((response) => {
+        console.log(response);
+        setMovies(response.data.results);
+      })
       .then(
         setTimeout(() => {
           setLoading(false);
@@ -65,7 +69,8 @@ const SearchPage = () => {
               onChange={handleInputChange}
               name="movie"
               label="Movie"
-              style={{ border: `1px solid ${borderColor}`, backgroundColor: backgroundColor, color: textColor, padding: "0 1rem", width: "20rem", fontSize: "20px", borderRadius: "5px" }}
+              placeholder="Movie Name"
+              style={{ border: `1px solid ${borderColor}`, backgroundColor: backgroundColor, color: textColor, padding: "0 1rem", width: "20rem", fontSize: "15px", borderRadius: "5px" }}
             />
             <input
               className=" "
@@ -73,7 +78,8 @@ const SearchPage = () => {
               onChange={handleInputChange}
               name="year"
               label="Year"
-              style={{ border: `1px solid ${borderColor}`, backgroundColor: backgroundColor, color: textColor, padding: "0 1rem", width: "20rem", fontSize: "20px", borderRadius: "5px" }}
+              placeholder="Year"
+              style={{ border: `1px solid ${borderColor}`, backgroundColor: backgroundColor, color: textColor, padding: "0 1rem", width: "20rem", fontSize: "15px", borderRadius: "5px" }}
             />
             <Button
               variant="outlined"

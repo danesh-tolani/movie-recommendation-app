@@ -1,4 +1,4 @@
-import { Box, createTheme } from "@mui/material";
+import { Box, createTheme, useMediaQuery } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import FlexBetween from "../components/FlexBetween";
@@ -8,6 +8,7 @@ import { themeSettings } from "../theme";
 import "../components/HomePageSections/HomeLeft.css";
 const WatchListPage = () => {
   const [loading, setLoading] = useState(false);
+  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
   const { genre, theme } = useSelector((state) => state.ui);
   const { list } = useSelector((state) => state.watchList);
@@ -27,7 +28,7 @@ const WatchListPage = () => {
 
   const flexStyle = {
     flexWrap: "wrap",
-    columnGap: "50px",
+    columnGap: `${isNonMobileScreens ? "50px" : "30px"}`,
     // padding: "0 1rem",
     justifyContent: "center",
     alignItems: "start",
@@ -36,7 +37,7 @@ const WatchListPage = () => {
   };
 
   return loading ? (
-    <FlexBetween style={{ justifyContent: "center" }}>
+    <FlexBetween style={{ justifyContent: "center", height: "90vh" }}>
       <LoadingScreen />
     </FlexBetween>
   ) : (
@@ -44,7 +45,7 @@ const WatchListPage = () => {
       style={{ backgroundColor: backgroundColor, height: "90vh", overflowY: "scroll" }}
       className="no-scrollbar ">
       <h1
-        className="text-center text-5xl pt-4"
+        className="text-center text-4xl pt-4"
         style={{ color: textColor }}>
         Watch List
       </h1>

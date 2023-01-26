@@ -3,7 +3,7 @@ import FlexBetween from "./FlexBetween";
 
 const LoadingScreen = () => {
   return (
-    <FlexBetween sx={{ height: "90vh" }}>
+    <FlexBetween>
       <img
         src="./src/assets/loading.svg"
         alt=""

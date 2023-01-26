@@ -1,17 +1,18 @@
+import { useMediaQuery } from "@mui/material";
 import React from "react";
 import FlexBetween from "../components/FlexBetween";
 import HomeLeft from "../components/HomePageSections/HomeLeft";
 import HomeMiddle from "../components/HomePageSections/HomeMiddle";
 
 const HomePage = () => {
+  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
+
   return (
-    <FlexBetween sx={{ alignItems: "flex-start" }}>
+    <FlexBetween sx={{ alignItems: "flex-start", flexDirection: isNonMobileScreens ? "row" : "column" }}>
       <HomeLeft />
-      {/* sx={{ width: "80%", flexDirection: "column", alignItems: "center", border: "2px solid red" }} */}
-      <div style={{ width: "80%" }}>
+      <div style={{ width: isNonMobileScreens ? "80%" : "100%" }}>
         <HomeMiddle />
       </div>
-      {/* <div>right</div> */}
     </FlexBetween>
   );
 };

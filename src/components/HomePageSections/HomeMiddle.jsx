@@ -1,4 +1,4 @@
-import { Box, createTheme } from "@mui/material";
+import { Box, createTheme, useMediaQuery } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
@@ -14,13 +14,14 @@ const HomeMiddle = () => {
   const [loading, setLoading] = useState(false);
   const { genre, theme } = useSelector((state) => state.ui);
   const { list } = useSelector((state) => state.watchList);
+  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
   const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
   const borderColor = mode.palette.neutral.medium;
 
   const flexStyle = {
     flexWrap: "wrap",
-    columnGap: "50px",
+    columnGap: `${isNonMobileScreens ? "50px" : "30px"}`,
     // padding: "0 1rem",
     justifyContent: "center",
     alignItems: "start",
@@ -57,12 +58,12 @@ const HomeMiddle = () => {
   }, [genre.id]);
 
   return loading ? (
-    <FlexBetween style={{ justifyContent: "center" }}>
+    <FlexBetween style={{ justifyContent: "center", height: "80vh" }}>
       <LoadingScreen />
     </FlexBetween>
   ) : (
     <Box>
-      <ImageSlider />
+      {isNonMobileScreens && <ImageSlider />}
       <FlexBetween sx={{ ...flexStyle }}>
         {movies &&
           movies.map((movie, i) => {
