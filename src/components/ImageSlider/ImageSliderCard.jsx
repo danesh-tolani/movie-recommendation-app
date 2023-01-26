@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import getMovieURL from "../../utils/getMovieURL";
+import { getMovieURL } from "../../utils/getMovieURL";
 
 const ImageSliderCard = ({ movie }) => {
   const [url, setUrl] = useState("");

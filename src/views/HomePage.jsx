@@ -2,7 +2,6 @@ import React from "react";
 import FlexBetween from "../components/FlexBetween";
 import HomeLeft from "../components/HomePageSections/HomeLeft";
 import HomeMiddle from "../components/HomePageSections/HomeMiddle";
-import ImageSlider from "../components/ImageSlider/ImageSlider";
 
 const HomePage = () => {
   return (

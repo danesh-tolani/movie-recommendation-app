@@ -14,7 +14,6 @@ const HomeMiddle = () => {
   const [loading, setLoading] = useState(false);
   const { genre, theme } = useSelector((state) => state.ui);
   const { list } = useSelector((state) => state.watchList);
-  console.log(list);
 
   const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
   const borderColor = mode.palette.neutral.medium;

@@ -1,9 +1,9 @@
 import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
-import getMovieURL from "../utils/getMovieURL";
+import { getMovieURL } from "../utils/getMovieURL";
 import { useDispatch, useSelector } from "react-redux";
-import { addToWatchList } from "../features/watchList/watchlistSlice";
+import { addToWatchList, removeFromWatchList } from "../features/watchList/watchlistSlice";
 
 const MovieCard = ({ movie }) => {
   const [url, setUrl] = useState("");
@@ -12,7 +12,7 @@ const MovieCard = ({ movie }) => {
   getMovieURL(movie?.id).then((response) => setUrl(response));
 
   const dispatch = useDispatch();
-  const lol = useSelector((state) => state);
+  const { list } = useSelector((state) => state.watchList);
 
   const buttonStyle = {
     position: "absolute",
@@ -25,7 +25,18 @@ const MovieCard = ({ movie }) => {
   };
 
   function addMovie() {
-    dispatch(addToWatchList({ name: movie.original_title, id: movie.id, posterURL: posterURL }));
+    const isPresent = list.find((watchListMovie) => {
+      if (watchListMovie.id === movie.id) {
+        return true;
+      }
+      return false;
+    });
+
+    if (isPresent === undefined) {
+      dispatch(addToWatchList(movie));
+    } else {
+      dispatch(removeFromWatchList(movie));
+    }
   }
 
   return (
