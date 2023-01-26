@@ -8,7 +8,6 @@ import { addToWatchList, removeFromWatchList } from "../features/watchList/watch
 
 const MovieCard = ({ movie }) => {
   const [url, setUrl] = useState("");
-  const [added, setAdded] = useState(false);
   const posterURL = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
 
   getMovieURL(movie?.id).then((response) => setUrl(response));
@@ -18,7 +17,6 @@ const MovieCard = ({ movie }) => {
 
   const buttonStyle = {
     position: "absolute",
-    // top: "calc(3rem * (1/2))",
     top: "0",
     height: "2rem",
     right: "0",
@@ -61,7 +59,6 @@ const MovieCard = ({ movie }) => {
         sx={buttonStyle}
         onClick={() => addMovie()}>
         {movie.added ? <CloseIcon sx={{ height: "2rem" }} /> : <AddIcon sx={{ height: "2rem" }} />}
-        {/* <AddIcon sx={{ height: "2rem" }} /> */}
       </Button>
     </Box>
   );

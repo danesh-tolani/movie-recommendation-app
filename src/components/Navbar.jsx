@@ -135,40 +135,6 @@ const Navbar = () => {
                 </Button>
               </FlexBetween>
             </Box>
-
-            {/* MENU ITEMS */}
-            {/* <FlexBetween
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            gap="3rem">
-            <FormControl
-              variant="standard"
-              value={fullName}>
-              <Select
-                value={fullName}
-                sx={{
-                  background: bgColor,
-                  width: "150px",
-                  borderRadius: "0.25rem",
-                  p: "0.25rem 1rem",
-                  "& .MuiSvgIcon-root": {
-                    pr: "0.25rem",
-                    width: "3rem",
-                  },
-                  "& .MuiSelect-select:focus": {
-                    backgroundColor: bgColor,
-                  },
-                }}
-                input={<InputBase />}>
-                <MenuItem value={fullName}>
-                  <Typography>{fullName}</Typography>
-                </MenuItem>
-                <MenuItem onClick={() => logout()}>Log out</MenuItem>
-              </Select>
-            </FormControl>
-          </FlexBetween> */}
           </Fade>
         </Box>
       )}

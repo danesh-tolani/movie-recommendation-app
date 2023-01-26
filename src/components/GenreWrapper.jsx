@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Box, createTheme, Typography, useMediaQuery } from "@mui/material";
+import { createTheme, Typography, useMediaQuery } from "@mui/material";
 import FlexBetween from "../components/FlexBetween";
 import { useDispatch, useSelector } from "react-redux";
 import { setGenre } from "../features/UI/uiSlice";
@@ -12,9 +12,7 @@ const GenreWrapper = ({ currentGenre, currentId }) => {
 
   const { theme, genre } = useSelector((state) => state.ui);
   const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
-  const bgColor = mode.palette.background.default;
   let textColor = mode.palette.primary.dark;
-  const borderColor = mode.palette.neutral.medium;
 
   if (currentId == genre.id) {
     textColor = "#E71D60";

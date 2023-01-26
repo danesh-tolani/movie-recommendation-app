@@ -35,7 +35,6 @@ const HomeLeft = () => {
     const response = await axios.get(APIUrls.categoriesAPI);
     setGenres(response.data.genres);
   }
-  // flex flex-col overflow-y-scroll h-[100vh]
   useEffect(() => {
     getCategories();
   }, []);

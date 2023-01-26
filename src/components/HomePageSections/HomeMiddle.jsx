@@ -28,7 +28,6 @@ const HomeMiddle = () => {
     alignItems: "start",
     width: "100%",
     rowGap: "30px",
-    // border: "2px solid blue",
   };
 
   async function getMovies(num) {
@@ -37,7 +36,6 @@ const HomeMiddle = () => {
       await axios
         .get(APIUrls.nowPlayingAPI.replace("page=1", `page=${num}`))
         .then((response) => {
-          console.log(response.data.results);
           setMovies(response.data.results);
         })
         .then(

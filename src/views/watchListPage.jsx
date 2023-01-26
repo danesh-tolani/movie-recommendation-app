@@ -33,7 +33,6 @@ const WatchListPage = () => {
     justifyContent: "center",
     alignItems: "start",
     width: "100%",
-    // border: "2px solid blue",
     rowGap: "30px",
   };
 

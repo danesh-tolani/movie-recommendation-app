@@ -49,15 +49,3 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 export default MaterialUISwitch;
-
-{
-  /* <FormGroup>
-<FormControlLabel
-  control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-  label="MUI switch"
-/>
-
-
-
-</FormGroup> */
-}

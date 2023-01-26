@@ -2,22 +2,16 @@ import Navbar from "./components/Navbar";
 import HomePage from "./views/HomePage";
 import SearchPage from "./views/SearchPage";
 import WatchListPage from "./views/WatchListPage";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleTheme, toggleLoading } from "./features/UI/uiSlice";
-import { useMemo, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useMemo } from "react";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { themeSettings } from "./theme";
-import { APIUrls } from "./utils/APIUrls";
-import LoadingScreen from "./components/LoadingScreen";
 
 function App() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { theme } = useSelector((state) => state.ui);
   const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
   const bgColor = mode.palette.background.default;
-  const textColor = mode.palette.primary.light;
 
   return (
     <div

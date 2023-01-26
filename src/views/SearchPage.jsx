@@ -10,21 +10,20 @@ import "../components/HomePageSections/HomeLeft.css";
 import { themeSettings } from "../theme";
 import { useSelector } from "react-redux";
 
-const initialValues = {
-  movie: "",
-  year: "",
-};
-
 const SearchPage = () => {
+  const initialValues = {
+    movie: "",
+    year: "",
+  };
+
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const [values, setValues] = useState(initialValues);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { genre, theme } = useSelector((state) => state.ui);
+  const { theme } = useSelector((state) => state.ui);
   const mode = useMemo(() => createTheme(themeSettings(theme)), [theme]);
 
   const flexStyle = {
-    // border: "2px solid red",
     flexWrap: "wrap",
     columnGap: `${isNonMobileScreens ? "50px" : "30px"}`,
     justifyContent: "center",
@@ -98,7 +97,7 @@ const SearchPage = () => {
         </FlexBetween>
       ) : (
         <Box
-          style={{ backgroundColor: backgroundColor, height: isNonMobileScreens ? "67vh" : "100%" }}
+          style={{ backgroundColor: backgroundColor, height: isNonMobileScreens ? "" : "100%" }}
           className="no-scrollbar ">
           <h1
             className="text-center text-3xl py-4"
